@@ -1,0 +1,28 @@
+#uploadStatusLayer {
+    width: 100%;
+    border: 1px solid #ECECEC;
+    float: left;
+    display: none;
+}
+
+#uploadStatusLayer .imageInfoLayer {
+    margin: 10px;
+    float: left;
+    width: 400px;
+    height: 340px;
+    border: 2px solid #a2958a;
+}
+
+.ajaxLoadingImage {
+    padding-left: 170px;
+    padding-top: 170px;
+}
+
+#uploadStatusLayer .imagePreview {
+    margin: 30px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 322px;
+    height: 242px;
+    border: 1px dotted green;
+}

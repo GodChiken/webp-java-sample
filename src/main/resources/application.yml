@@ -1,0 +1,18 @@
+server:
+    port: 8090
+
+spring:
+    java:
+        template:
+            cache: false
+#    mvc:
+#        view:
+#            prefix: /WEB-INF/jsp/
+#            suffix: .jsp
+
+logging:
+    level:
+        com.leekyoungil.webp.sample: DEBUG
+
+multipart:
+    maxFileSize: 10mb
