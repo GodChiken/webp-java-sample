@@ -12,7 +12,7 @@ import java.util.Map;
 @Controller
 public class FileUploadViewController {
 
-    @RequestMapping(value = "/upload", method = RequestMethod.GET)
+    @RequestMapping(value = {"/upload", "/"}, method = RequestMethod.GET)
     public String getUploadView (Map<String, Object> model) {
 
         return "fileUploadView";

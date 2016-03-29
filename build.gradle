@@ -13,7 +13,16 @@ war {
 }
 
 bootRun {
+    systemProperties = System.properties
     main = 'com.leekyoungil.webp.sample.Application'
+}
+
+task local << {
+    jvmFlags = ['-DPROFILE=local']
+}
+
+task real << {
+    jvmFlags = ['-DPROFILE=local']
 }
 
 buildscript {

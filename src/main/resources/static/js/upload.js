@@ -9,7 +9,20 @@ function preview (obj) {
     window.open('/html/preview.html?url='+$(obj).attr('src'), '', 'width=300, height=400');
 }
 
-$(document).on('ready', function() {
+function webpCheckStatusLayer (text) {
+    var textHtml = $('#checkWebpStatus').html();
+
+    console.log(textHtml);
+    if (textHtml != '') {
+        textHtml += ' / ' + text;
+    } else {
+        textHtml = text;
+    }
+
+    $('#checkWebpStatus').html(textHtml);
+}
+
+$(document).ready(function() {
     $("#input-24").fileinput({
         initialPreview: [],
         overwriteInitial: false,

@@ -3,6 +3,7 @@ package com.leekyoungil.webp.sample.service;
 import com.leekyoungil.webp.sample.config.Define;
 import com.leekyoungil.webp.sample.model.ImageInfo;
 import org.apache.commons.io.FilenameUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -70,8 +71,9 @@ public class FileUploadService {
     private String getUploadRootPath () {
         String absoluteFilePath = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
 
-        // change file path classes to resources.
-        if (absoluteFilePath.indexOf("classes") > -1) {
+        String profileActive = System.getProperty("profile");
+        // change file path classes to resources on osx.
+        if ("local".equals(profileActive)) {
             absoluteFilePath = absoluteFilePath.replace("classes", "resources");
         }
 
