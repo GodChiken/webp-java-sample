@@ -75,9 +75,9 @@ public class WebpConvertService {
                 newFilePathTmpArray[newFilePathTmpArray.length-1] = "webp";
 
                 try {
-                    RenderedImage renderedImage = loadImage(oldFile.getAbsolutePath());
+                    RenderedImage renderedImage = ImageIO.read(new File(oldFile.getAbsolutePath()));
 
-                    if (imageWriterCompression(renderedImage, compressionType, 1F, String.join(".", newFilePathTmpArray))) {
+                    if (imageWriterCompression(renderedImage, compressionType, 0.8F, String.join(".", newFilePathTmpArray))) {
                         webpFile = new File(String.join(".", newFilePathTmpArray));
                     }
                 } catch (Exception ex) {
@@ -90,25 +90,6 @@ public class WebpConvertService {
         }
 
         return webpFile;
-    }
-
-    /**
-     * create RenderedImage object using real path of the file.
-     *
-     * @param name
-     * @return
-     * @throws IOException
-     */
-    private RenderedImage loadImage(String name) throws IOException {
-        return ImageIO.read(new File(name));
-    }
-
-    /**
-     * @param outputName
-     * @return
-     */
-    private File createOutputFile(final String outputName) {
-        return new File(outputName);
     }
 
     /**
@@ -145,7 +126,7 @@ public class WebpConvertService {
             ImageOutputStream imageOutputStream = null;
 
             try {
-                File file = createOutputFile(outputName);
+                File file = new File(outputName);
                 imageOutputStream = ImageIO.createImageOutputStream(file);
 
                 imgWriter.setOutput(imageOutputStream);
