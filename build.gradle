@@ -17,12 +17,17 @@ bootRun {
     main = 'com.leekyoungil.webp.sample.Application'
 }
 
+String getRuntimeClasspath() {
+    sourceSets.main.runtimeClasspath.collect { it.absolutePath }.join(':')
+}
+
 task local << {
-    jvmFlags = ['-DPROFILE=local']
+    print(getRuntimeClasspath())
+    bootRun.systemProperty 'spring.profiles.active', 'local'
 }
 
 task real << {
-    jvmFlags = ['-DPROFILE=local']
+    bootRun.systemProperty 'spring.profiles.active', 'real'
 }
 
 buildscript {

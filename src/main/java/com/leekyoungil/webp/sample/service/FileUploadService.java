@@ -3,7 +3,9 @@ package com.leekyoungil.webp.sample.service;
 import com.leekyoungil.webp.sample.config.Define;
 import com.leekyoungil.webp.sample.model.ImageInfo;
 import org.apache.commons.io.FilenameUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,6 +21,9 @@ import java.util.Arrays;
  */
 @Service
 public class FileUploadService {
+
+    @Autowired
+    Environment env;
 
     /**
      * save file to remote storage.
@@ -71,7 +76,15 @@ public class FileUploadService {
     private String getUploadRootPath () {
         String absoluteFilePath = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
 
-        String profileActive = System.getProperty("profile");
+        String profileActive;
+
+        try {
+            profileActive = env.getActiveProfiles()[0];
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            profileActive = "local";
+        }
+
         // change file path classes to resources on osx.
         if ("local".equals(profileActive)) {
             absoluteFilePath = absoluteFilePath.replace("classes", "resources");
