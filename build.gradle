@@ -21,8 +21,11 @@ String getRuntimeClasspath() {
     sourceSets.main.runtimeClasspath.collect { it.absolutePath }.join(':')
 }
 
+tast libpath << {
+    bootRun.systemProperty 'java.library.path', 'your project path + libpath ex) /home/user/webp-java-sample/src/main/webapp/WEB-INF/lib/osx/'
+}
+
 task local << {
-    print(getRuntimeClasspath())
     bootRun.systemProperty 'spring.profiles.active', 'local'
 }
 
