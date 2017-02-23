@@ -6,6 +6,7 @@ import com.leekyoungil.webp.sample.model.ResponseFileUploadResult;
 import com.leekyoungil.webp.sample.param.UploadFormParam;
 import com.leekyoungil.webp.sample.service.FileUploadService;
 import com.leekyoungil.webp.sample.service.WebpConvertService;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,13 +22,13 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class FileUploadController {
 
     @Inject
-    FileUploadService fileUploadService;
+    private FileUploadService fileUploadService;
     @Inject
-    WebpConvertService webpConvertService;
+    private WebpConvertService webpConvertService;
 
-    @RequestMapping(value = "/doUpload", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/doUpload", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseFileUploadResult uploadFile (@ModelAttribute UploadFormParam uploadFormParam) {
-        final ResponseFileUploadResult responseFileUploadResult = new ResponseFileUploadResult();;
+        final ResponseFileUploadResult responseFileUploadResult = new ResponseFileUploadResult();
 
         if (uploadFormParam.getImageFile().size() > 0) {
             // the tmp directory create.

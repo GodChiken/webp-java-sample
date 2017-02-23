@@ -12,7 +12,6 @@ function preview (obj) {
 function webpCheckStatusLayer (text) {
     var textHtml = $('#checkWebpStatus').html();
 
-    console.log(textHtml);
     if (textHtml != '') {
         textHtml += ' / ' + text;
     } else {
